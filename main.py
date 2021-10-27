@@ -8,9 +8,10 @@ from crud.insert import (
 )
 from crud.query import controlling_columns, ordering, querying_data
 from crud.update import update_row
+from relationship.join import perform_join
 #  INSERT
-# insert_stmt()
-# multiple_insert_stmt()
+insert_stmt()
+multiple_insert_stmt()
 
 # Querying Data
 # sum_columns_value()
@@ -20,4 +21,6 @@ from crud.update import update_row
 
 # update_row()
 
-# prepare_for_relationship()
+prepare_for_relationship()
+
+perform_join()

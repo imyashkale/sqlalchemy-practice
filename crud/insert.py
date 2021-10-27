@@ -116,7 +116,7 @@ def prepare_for_relationship():
     rst = conn.execute(stmt, lineitems)
     print("Inserted rows count :", rst.rowcount)
 
-    stmt = insert(orders).values( user_id = 2, order_id= 2 )
+    stmt = insert(orders).values( user_id=2, order_id=2 )
     rst = conn.execute(stmt)
     print("Order Created For user 02 Id 02")
     lineitems = [

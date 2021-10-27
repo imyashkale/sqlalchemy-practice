@@ -2,3 +2,4 @@ env/*
 __pycache__/*
 crud/__pycache__/*
 builtinsql/__pycache__/*
+relationship/__pycache__/*
