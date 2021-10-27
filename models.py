@@ -47,5 +47,6 @@ items = Table(
     Column('quantity',Integer()),
     Column('extended_cost',Numeric(12,2))
 )
+
 metadata.drop_all()
 metadata.create_all()

@@ -1,5 +1,6 @@
 from sqlalchemy.sql.expression import insert
-from models import cookies
+from sqlalchemy.sql.functions import user
+from models import cookies,users,orders,items
 from db import conn
 
 def insert_stmt():
@@ -65,5 +66,74 @@ def multiple_insert_stmt():
     result = conn.execute(stmt, inventory_items )
     print("MULTIPLE INSERION RESULT :",result)
 
+def prepare_for_relationship():
+    rst = users.delete().execute()
+    print("Cleared :", rst.rowcount)
 
+    customers = [
+        {
+            'username': "cookiemon",
+            'email_address': 'mon@cookie.com',
+            'phone': '111-111-111',
+            'password':'cookiemon#21'
+        },
+        {
+            'username': "cakeeater",
+            'email_address': 'cakeeater@cookie.com',
+            'phone': '222-222-222',
+            'password':'cakeeater#21'
+        },
+        {
+            'username': "pieguy",
+            'email_address': 'pieguy@cookie.com',
+            'phone': '333-333-333',
+            'password':'pieguy#21'
+        }
+    ]
+    stmt = users.insert()
+    rst = conn.execute(stmt, customers)
+    print("User Inserted rows count :", rst.rowcount)
+
+    stmt = insert(orders).values( user_id = 1, order_id=1 )
+    rst = conn.execute(stmt)
+    print("Order Created For user 01 Id 01")
+
+    lineitems = [
+        {
+            'order_id': 1,
+            'cookie_id': 1,
+            'quantity': 2,
+            'extended_cost':1.00
+        },
+        {
+            'order_id': 1,
+            'cookie_id': 3,
+            'quantity': 12,
+            'extended_cost':3.00
+        }
+    ]
+    stmt = items.insert()
+    rst = conn.execute(stmt, lineitems)
+    print("Inserted rows count :", rst.rowcount)
+
+    stmt = insert(orders).values( user_id = 2, order_id= 2 )
+    rst = conn.execute(stmt)
+    print("Order Created For user 02 Id 02")
+    lineitems = [
+        {
+            'order_id': 2,
+            'cookie_id': 1,
+            'quantity': 24,
+            'extended_cost':12.00
+        },
+        {
+            'order_id': 2,
+            'cookie_id': 4,
+            'quantity': 6,
+            'extended_cost':6.00
+        }
+    ]
+    stmt = items.insert()
+    rst = conn.execute(stmt, lineitems)
+    print("Inserted rows count :", rst.rowcount)
 
