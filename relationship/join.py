@@ -1,8 +1,10 @@
+from operator import and_
 from pprint import pprint
 from sqlalchemy.sql.expression import select
 from sqlalchemy.sql.functions import func, user
 from db import conn
-from models import cookies,users,items,orders
+from models.mcookie import cookies,users,items,orders
+from models.memployee import employee
 
 
 
@@ -43,3 +45,13 @@ def perform_join():
     rst = [row for row in rst ]
     pprint("OUTER JOIN RESULT :")
     pprint(rst)
+
+
+def perform_aliases():
+    manager = employee.alias('mgr')
+    stmt = select([employee.c.name],
+        and_(employee.c.manager_id == manager.c.id,
+            manager.c.name == 'Fred'
+        )
+    )
+    pass

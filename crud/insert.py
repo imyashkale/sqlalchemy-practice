@@ -1,6 +1,6 @@
 from sqlalchemy.sql.expression import insert
 from sqlalchemy.sql.functions import user
-from models import cookies,users,orders,items
+from models.mcookie import cookies,users,orders,items
 from db import conn
 
 def insert_stmt():

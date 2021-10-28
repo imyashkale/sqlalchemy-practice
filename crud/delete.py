@@ -1,6 +1,6 @@
 from sqlalchemy import delete
 from sqlalchemy.sql.expression import select
-from models import cookies
+from models.mcookie import cookies
 from db import conn
 
 def delete_row():

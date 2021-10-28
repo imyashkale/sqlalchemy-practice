@@ -1,5 +1,5 @@
 from sqlalchemy import update
-from models import cookies
+from models.mcookie import cookies
 from db import conn
 
 def update_row():

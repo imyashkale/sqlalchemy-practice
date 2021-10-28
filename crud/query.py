@@ -1,7 +1,7 @@
 from sqlalchemy.engine import result
 from sqlalchemy.sql import select
 from db import conn
-from models import cookies
+from models.mcookie import cookies
 from pprint import pprint
 
 def querying_data():
